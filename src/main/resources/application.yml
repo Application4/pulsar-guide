@@ -6,13 +6,14 @@ spring:
     client:
       service-url: pulsar://localhost:6650
     producer:
-      topic-name: test1
+      topic-name1: test1
+      topic-name2: book-topic
     consumer:
       subscription:
         name: my-subscription
-#    defaults:
-#      type-mappings:
-#        - messageType: com.javatechie.dto.Customer
-#          schema-info:
-#            schema-type: JSON
+    defaults:
+      type-mappings:
+        - messageType: com.example.demo.Book
+          schema-info:
+            schema-type: JSON
 

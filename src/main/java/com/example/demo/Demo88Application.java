@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Random;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
@@ -20,9 +21,15 @@ public class Demo88Application {
     private MessageProducer producer;
 
 
-	@GetMapping("/plain")
+    @GetMapping("/plain")
     public String publishTextEvent() throws PulsarClientException {
         producer.publish(UUID.randomUUID().toString());
+        return "Success !";
+    }
+
+    @GetMapping("/complex")
+    public String publishRawEvent() throws PulsarClientException {
+        producer.publish(new Book(new Random().nextInt(29211), "Book" + UUID.randomUUID().toString().split("-")[1]));
         return "Success !";
     }
 
